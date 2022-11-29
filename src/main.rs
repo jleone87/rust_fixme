@@ -1,7 +1,7 @@
 use std::fmt::{self, Formatter, Display};
 
 /* Demonstrates printing of a user defined struct using println! macro.*/
-
+/// struct for our cities
 struct City {
     name: &'static str,
     // Latitude
@@ -11,7 +11,7 @@ struct City {
 }
 
 impl Display for City {
-    // `f` is a buffer, this method must write the formatted string into it
+    /// `f` is a buffer, this method must write the formatted string into it
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
         let lat_c = if self.lat >= 0.0 { 'N' } else { 'S' };
         let lon_c = if self.lon >= 0.0 { 'E' } else { 'W' };
@@ -24,14 +24,15 @@ impl Display for City {
 
 
 #[derive(Debug)]
+/// struct for our colors
 struct Color {
     red: u8,
     green: u8,
     blue: u8,
 }
-//added display for Color struct
+/// added display for Color struct
 impl Display for Color {
-    // `f` is a buffer, this method must write the formatted string into it
+    /// `f` is a buffer, this method must write the formatted string into it
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
         // `write!` is like `format!`, but it will write the formatted string into a buffer (the first argument)
         write!(f, "red: {},green: {}, blue:{}",
@@ -40,7 +41,6 @@ impl Display for Color {
 }
 
 fn main() {
-    //Iterates over an array of City objects after creating an Iterator for said array
     for city in [
         City { name: "Glassboro", lat: 39.702892, lon: -75.111839 },
         City { name: "Mullica Hill", lat: 39.73928, lon: -75.224072 },
@@ -48,7 +48,6 @@ fn main() {
     ].iter() {
         println!("{}", *city);
     }
-    //Iterates over an array of Color objects after creating an Iterator for said array
     for color in [
         Color { red: 128, green: 255, blue: 90 },
         Color { red: 0, green: 3, blue: 254 },
